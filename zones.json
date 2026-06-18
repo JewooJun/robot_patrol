@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "units": "cm",
+    "axes": "x=right, z=down (building_map 기준)",
+    "source": "S7 navmesh-validated 2026-06-02"
+  },
+  "business_hours": { "start": "09:00", "end": "18:00" },
+  "demo_clock": { "after_hours": true },
+
+  "zones": [
+    {
+      "id": "datacenter_core",
+      "type": "restricted_area",
+      "bounds": { "xmin": 1400, "xmax": 2410, "zmin": 3880, "zmax": 4670 },
+      "access_level": "restricted",
+      "loitering_allowed": false,
+      "risk_weight": 1.0,
+      "note": "navmesh로 고립된 섬(아무도 못 들어감) = 보호 대상 자산"
+    },
+    {
+      "id": "datacenter_perimeter",
+      "type": "sensitive_perimeter",
+      "bounds": { "xmin": 1300, "xmax": 2650, "zmin": 3250, "zmax": 3880 },
+      "access_level": "public",
+      "protects": "datacenter_core",
+      "loitering_allowed": false,
+      "loitering_threshold_sec": 4.0,
+      "repeat_visit_threshold": 3,
+      "risk_weight": 0.55,
+      "note": "public이지만 datacenter 보안 경계. 통행은 정상, 체류/반복/입구주시는 위험"
+    },
+    {
+      "id": "office_main",
+      "type": "office",
+      "bounds": { "xmin": -5, "xmax": 1326, "zmin": 325, "zmax": 2873 },
+      "access_level": "staff_only",
+      "loitering_allowed": true,
+      "risk_weight": 0.25,
+      "note": "R6 (좌측 대형 사무실 영역)"
+    },
+    {
+      "id": "office_small",
+      "type": "office",
+      "bounds": { "xmin": 850, "xmax": 1188, "zmin": 650, "zmax": 1367 },
+      "access_level": "staff_only",
+      "loitering_allowed": true,
+      "risk_weight": 0.25,
+      "note": "R8 (소형 사무실) — office_main보다 우선 매칭"
+    },
+    {
+      "id": "public_floor",
+      "type": "public_space",
+      "bounds": null,
+      "access_level": "public",
+      "loitering_allowed": true,
+      "risk_weight": 0.1,
+      "note": "그 외 모든 walkable 영역(폴백)"
+    }
+  ],
+
+  "no_spawn_zones": [
+    { "id": "room_right", "bounds": { "xmin": 1900, "xmax": 2500, "zmin": 1800, "zmax": 2400 }, "note": "사람 배치 금지" },
+    { "id": "robot_starts", "note": "각 로봇 ROUTE 시작점 반경 200cm 내 사람 배치 금지 (코드에서 자동 처리)" }
+  ],
+
+  "exits": [
+    { "id": "E_MAIN", "name": "front_exit", "x": 1250, "z": 100, "type": "main_exit" },
+    { "id": "E_EAST", "name": "east_exit", "x": 600, "z": 3600, "type": "staff_door",
+      "note": "USD엔 벽, 실제 건물엔 문 → 로지컬 출구(도달 선점으로 판정)" }
+  ]
+}

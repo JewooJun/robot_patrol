@@ -1,0 +1,22 @@
+# secrets
+.openai_key
+# runtime artifacts
+core
+*.db
+cam_live.jpg
+patrol_log.txt
+state.json
+evidence/
+demo_frames/
+__pycache__/
+*.pyc
+*.tmp
+
+# offline wheel bundle (zip 전용, git 제외)
+deps/
+# editor/agent configs
+.claude/
+.codex/
+.agents/
+
+.DS_Store
