@@ -76,10 +76,6 @@ opencv-python-headless==4.11.0.86
 mediapipe==0.10.18
 ```
 
-> ⚠️ mediapipe / opencv wheel은 **aarch64 (ARM64) / py3.11** 전용 — 채점 PC도 ARM64 필요.
-
-**(선택) OpenAI API 키** — 실제 GPT-4o-mini 판정을 쓰려면 프로젝트 루트에 `.openai_key` 파일을 둡니다(키 한 줄). 없으면 규칙기반 mock으로 동작하며 데모는 정상 진행됩니다. 부팅 로그의 `>>> VLM: OpenAI connected (gpt-4o-mini)` 로 인식 여부 확인.
-
 ---
 
 ## Run
